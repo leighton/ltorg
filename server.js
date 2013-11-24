@@ -75,8 +75,8 @@ var activity = function(){
         };
 
         var hmac = (function(){
-          var config = require('etc/hmmac-config.json');
-          var store = new KeyStore('etc/api-keys.json');
+          var config = require('./etc/hmmac-config.json');
+          var store = new KeyStore('./etc/api-keys.json');
           return hmac_intercept(config,store);
         })();
 

@@ -7,8 +7,8 @@ var KeyStore = function(path){
 };
 
 KeyStore.prototype.getCredentials = function(id,cb){
-  cb(this.store[id] || null);
-};
+  cb(this.store[id]);
+}
 
 var hmac_intercept = function(config,store){
 
@@ -16,10 +16,16 @@ var hmac_intercept = function(config,store){
 
   var cred_fn = function(reqAccessKey,cb){
       store.getCredentials(reqAccessKey,function(cred){
-        cb(cred ? {
-          accessKeyId : cred.key,
-          accessKeySecret : cred.secret
-        } : null);
+        if(cred){
+          cb({
+            accessKeyId : cred.key,
+            accessKeySecret : cred.secret
+          });
+        }else{
+          console.log("Could not find api key for "+reqAccessKey);
+          console.log(store.store);
+          cb(null);
+        }
       });
   };
 
@@ -50,7 +56,7 @@ var activity = function(){
             if(current!=="" && expires!==null){
                 ob = { 
                     msg : current,
-                    timeout : expires.diff(moment(),'seconds')*1000
+                    timeout : expires.diff(moment(),'seconds')
                 };
                 res.end(JSON.stringify(ob));
             }else{
@@ -67,7 +73,7 @@ var activity = function(){
               setTimeout(function(){
                 current="";
                 expires=null;
-              },req.body.timeout*1000);
+              },req.body.timeout);
               res.statusCode = 200;
               res.write("{result:'Activity message cache has been updated!'}");
             }

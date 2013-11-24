@@ -46,6 +46,7 @@
         if(tid) clearTimeout(tid);
         setTimeout(function(){
            doingActivity=false;
+           rest();
         },data.timeout||1);
         activity(data);
     });
@@ -58,6 +59,7 @@
           if(tid) clearTimeout(tid);
           setTimeout(function(){
             doingActivity=false;
+            rest();
           },data.timeout||1);
           activity(data);
         },

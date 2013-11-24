@@ -1,0 +1,6 @@
+{
+  "12345" : {
+    "key" : "mykey",
+    "secret" : "mysecret"
+  }
+}

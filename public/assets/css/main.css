@@ -1,0 +1,38 @@
+body {
+  font-family: 'Londrina Sketch', cursive;
+}
+
+h1 {
+  font-size: 64px;
+}
+
+a {
+  text-decoration:none;
+}
+
+a img {
+  border: none;
+}
+
+.msg {
+  font-size: 32px;
+}
+
+.cpu {
+  font-size: 128px;
+}
+
+.percent {
+  font-size: 64px;
+}
+
+.cpu-container {
+  text-align: center;
+}
+
+.osn-icon {
+  margin:10px;
+  width:40px;
+  height:40px;
+}
+

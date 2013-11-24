@@ -1,0 +1,5 @@
+{
+  "headerPrefix": "Hmmac",
+  "hash": "sha1",
+  "serviceLabel": "HMAC"
+}

@@ -54,14 +54,20 @@
     $.ajax({
         url : 'activity',
         dataType : 'json',
-        success : function(data){
-          doingActivity=true;
-          if(tid) clearTimeout(tid);
-          setTimeout(function(){
+        statusCode : {
+          200 : function(data){
+            doingActivity=true;
+            if(tid) clearTimeout(tid);
+            setTimeout(function(){
+              doingActivity=false;
+              rest();
+            },data.timeout||1);
+            activity(data);
+          },
+          204 : function(){
             doingActivity=false;
             rest();
-          },data.timeout||1);
-          activity(data);
+          }
         },
         error : function(res,status,err){
          // console.warn(err);

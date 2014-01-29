@@ -60,7 +60,7 @@ var activity = function(){
                 };
                 res.end(JSON.stringify(ob));
             }else{
-                res.statusCode = 401;
+                res.statusCode = 204;
                 res.end();
             }
         };
